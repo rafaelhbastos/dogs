@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { UserContext } from "../../UserContext";
-import UseForm from "../../Hooks/UseForm";
+import useForm from "../../Hooks/UseForm";
 import Button from "../Forms/Button";
 import Input from './../Forms/Input';
 import Error from './../Helper/Error';
@@ -10,8 +10,8 @@ import styles from '../../CSS/LoginForm.module.css'
 import stylesBtn from '../../CSS/Button.module.css'
 
 const LoginForm = () => {
-  const username = UseForm();
-  const password = UseForm();
+  const username = useForm();
+  const password = useForm();
 
   const { userLogin, error, loading } = useContext(UserContext);
 
