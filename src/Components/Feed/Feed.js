@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import FeedModal from "./FeedModal";
 import FeedPhotos from "./FeedPhotos";
+import PropTypes from "prop-types";
 
 const Feed = ({ user }) => {
   const [modalPhoto, setModalPhoto] = useState(null);
@@ -13,13 +14,13 @@ const Feed = ({ user }) => {
       if (infinity) {
         const scroll = window.scrollY;
         const height = document.body.offsetHeight - window.innerHeight;
-        
-        if (scroll > height* 0.75 && !wait) {
+
+        if (scroll > height * 0.75 && !wait) {
           setPages((pages) => [...pages, pages.length + 1]);
           wait = true;
           setTimeout(() => {
             wait = false;
-          }, 500);        
+          }, 500);
         }
       }
     }
@@ -38,10 +39,27 @@ const Feed = ({ user }) => {
         <FeedModal photo={modalPhoto} setModalPhoto={setModalPhoto} />
       )}
       {pages.map((page) => (
-        <FeedPhotos key={page} page={page} user={user} setModalPhoto={setModalPhoto} setInfinity={setInfinity}/>
+        <FeedPhotos
+          key={page}
+          page={page}
+          user={user}
+          setModalPhoto={setModalPhoto}
+          setInfinity={setInfinity}
+        />
       ))}
     </div>
   );
+};
+
+Feed.defaultProps = {
+  user: 0,
+};
+
+Feed.propTypes = {
+  user: PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    PropTypes.number.isRequired,
+  ])
 };
 
 export default Feed;
