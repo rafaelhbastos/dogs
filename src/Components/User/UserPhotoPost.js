@@ -8,6 +8,7 @@ import useForm from "./../../Hooks/UseForm";
 import useFetch from "./../../Hooks/UseFetch";
 import Error from './../Helper/Error';
 import { PHOTO_POST } from "./../../api";
+import Head from "../Helper/Head";
 
 const UserPhotoPost = () => {
   const name = useForm();
@@ -46,6 +47,7 @@ const UserPhotoPost = () => {
 
   return (
     <section className={`${styles.photoPost} animeLeft`}>
+      <Head title="Poste sua foto"/>
       <form onSubmit={handleSubmit}>
         <Input label="Nome" type="text" name="nome" {...name} />
         <Input label="Peso" type="number" name="peso" {...weight} />
